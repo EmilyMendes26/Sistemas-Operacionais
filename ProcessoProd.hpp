@@ -7,17 +7,18 @@
 class ProcessoProd:public Processo{
     
     public:
-        ProcessoProd();
+        ProcessoProd(int id);
+        ~ProcessoProd();
 
         void setWake(bool wake);
-        void setTemp_proc(int temp_p);
-        void setId(int id_p);
+        void setTemp();
+        void recebe_mensagem(string msg);
 
         bool getWake();
         int getTemp();
         int getID();
-
         int produz();
+        string manda_mensagem();
 };
 
 #endif

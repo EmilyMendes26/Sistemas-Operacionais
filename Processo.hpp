@@ -9,15 +9,17 @@ class Processo
         int id;
         int temp_proc;
         bool is_wake;
+        string msgbox;
 
     public:
-        Processo();
-        virtual void setId(int id) = 0;
-        virtual void setTemp_proc(int temp) = 0;
+        Processo(int id);
+        virtual int getID() = 0;
+        virtual int getTemp() = 0;
 };
 
-Processo::Processo()
+Processo::Processo(int id)
 {
+    this->id = id;
 }
 
 

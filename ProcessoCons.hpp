@@ -7,17 +7,19 @@
 class ProcessoCons:public Processo{
     
     public:
-        ProcessoCons();
+        ProcessoCons(int id);
+        ~ProcessoCons();
 
         void setWake(bool wake);
-        void setTemp_proc(int temp_c);
-        void setId(int id_c);
+        void setTemp();
+        void consome(int prod);
+        void recebe_mensagem(string msg);
 
         bool getWake();
         int getTemp();
         int getID();
+        string manda_mensagem();
 
-        void consome(int prod);
 };
 
 #endif
