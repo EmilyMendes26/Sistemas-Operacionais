@@ -3,7 +3,6 @@
 
 class Escalonador{
     private:
-    vector
-    public:
 
+    public:
 }
