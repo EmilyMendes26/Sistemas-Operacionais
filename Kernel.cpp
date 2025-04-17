@@ -21,13 +21,18 @@ void Kernel::criaProcesso(int qp, int qc)
     }
 }
 
-Processo* Kernel::getProcesso(string status) {
+Processo* Kernel::getProcesso(int id) {
     for (Processo* p : tabelaDeProcessos) {
-        if (p->getStatus() == status) {
+        if (p->getID() == id) {
             return p;
         }
     }
     return nullptr;
+}
+
+int Kernel::getTamanhoTabela()
+{
+    return this->tabelaDeProcessos.size();
 }
 
 void Kernel::listarProcessos(){

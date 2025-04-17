@@ -9,10 +9,15 @@ Escalonador::Escalonador(Kernel* k)
 
 void Escalonador::adicionaProcesso()
 {
-    Processo* processo = kernel->getProcesso("espera");
+    int limite = kernel->getTamanhoTabela();
 
-    if (processo != nullptr) {
-        fila.push_back(processo);
+    for (int i = 0; i <= limite; i++){
+        Processo* processo = kernel->getProcesso(i);
+        if (processo != nullptr){
+            if(processo->getStatus() == "espera" || processo->getStatus() == "iniciado"){
+                fila.push_back(processo);
+            }
+        }
     }
 }
 
@@ -22,7 +27,9 @@ void Escalonador::iniciaProcesso()
         if (aux->getStatus() == "espera"){
             aux->setStatus("iniciado");
 
-            cout << "Processo ID: " << aux->getID() << " Iniciado";
+            cout << "Processo ID: " << aux->getID() << " Iniciado" << endl;
+            fila.clear();
+            adicionaProcesso();
         }
     }
 }
@@ -34,6 +41,8 @@ void Escalonador::terminaProcesso()
         aux->setStatus("espera");
 
         cout << "Processo ID: " << aux->getID() << " terminado" << endl;
+        fila.clear();
+        adicionaProcesso();
     }
 }
 }
@@ -41,7 +50,7 @@ void Escalonador::terminaProcesso()
 void Escalonador::listaProcesso()
 {    
     for (Processo* aux : fila) {
-        cout << "Processo ID: " << aux->getID() << " na fila de espera" << endl;
+        cout << "Processo ID: " << aux->getID() << " status:" << aux->getStatus() << endl;
     }
 }
 

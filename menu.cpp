@@ -36,7 +36,7 @@ int main(){
                 cout << "Digite 3 para encerrar processo" << endl;
                 cout << "Digite 4 para visualizar os processos" << endl;
                 cout << "Digite 5 para visualizar a fila do escalonador" << endl;
-                cout << "Digite 6 para visualizar escalonamento em wake and sleep" << endl;
+                cout << "Digite 6 para visualizar escalonamento wake and sleep" << endl;
                 cout << "Digite 7 para gerar 5 processos" << endl;
 
                 cin >> opc2;
@@ -56,30 +56,32 @@ int main(){
                     cout << "Quantos processos consumidor vai criar?" << endl;
                     cin >> qC;
                     sistema.criaProcesso(qP, qC);
-                    sleepClear();
                     escalona.adicionaProcesso();
+                    sleepClear();
                 }
                 if (opc2 == 2){
-                    int id;
-                    cout << "Qual processo deseja iniciar?" << endl;
-                    cin >> id;
                     escalona.iniciaProcesso();
+                    sleepClear();
                 }
                 if (opc2 == 3){
                     escalona.terminaProcesso();
+                    sleepClear();
                 }
 
                 if (opc2 == 4){
                     sistema.listarProcessos();
+                    sleepClear();
                 }
 
                 if (opc2 == 5){
                     escalona.listaProcesso();
+                    sleepClear();
                 }
 
                 if (opc2 == 7){
-                    sistema.criaProcesso(3,4);
+                    sistema.criaProcesso(3,2);
                     escalona.adicionaProcesso();
+                    sleepClear();
                 }
 
                 if (opc2 == 6){
@@ -132,13 +134,6 @@ int main(){
                             cout << "Consumidor dormindo" << endl;
                         }
                     }
-                }
-        
-                if (opc2 == 10){
-                    int id;
-                    cout << "Qual processo deseja iniciar?" << endl;
-                    cin >> id;
-                    escalona.iniciaProcesso();
                 }
 
             } while (opc2 != 0);
