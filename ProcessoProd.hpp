@@ -12,11 +12,14 @@ class ProcessoProd:public Processo{
 
         void setWake(bool wake);
         void setTemp();
+        void setStatus(string status);
         void recebe_mensagem(string msg);
 
         bool getWake();
         int getTemp();
         int getID();
+        string getNome();
+        string getStatus();
         int produz();
         string manda_mensagem();
 };

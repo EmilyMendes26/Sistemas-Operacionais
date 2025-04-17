@@ -14,8 +14,8 @@ class Kernel{
 
         void adicionaProcesso(Processo* processo);
         void listarProcessos();
-        void criaProcesso();
-        Processo* buscaProcesso(int id);
+        void criaProcesso(int qp, int qc);
+        Processo* getProcesso(string status);
 };
 
 #endif

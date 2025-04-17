@@ -4,8 +4,9 @@
 #include<iostream>
 #include<random>
 #include <ctime>
-#include <thread>
+#include <unistd.h>
 #include<vector>
+#include <cstdlib>
 
 using namespace std;
 

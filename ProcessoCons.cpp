@@ -3,6 +3,8 @@
 ProcessoCons::ProcessoCons(int id) :Processo(id)
 {
     this->id = id;
+    this->status = "espera";
+    this->nome = "consumidor";
     setTemp();
 
     cout << "Processo consumidor criado ";
@@ -26,6 +28,11 @@ void ProcessoCons::setTemp()
     this->temp_proc = temp;
 }
 
+void ProcessoCons::setStatus(const string status)
+{
+    this->status = status;
+}
+
 bool ProcessoCons::getWake()
 {
     return is_wake;
@@ -40,6 +47,16 @@ int ProcessoCons::getTemp()
 int ProcessoCons::getID()
 {
     return this->id;
+}
+
+string ProcessoCons::getNome()
+{
+    return this->nome;
+}
+
+string ProcessoCons::getStatus()
+{
+    return this->status;
 }
 
 void ProcessoCons::consome(int prod)

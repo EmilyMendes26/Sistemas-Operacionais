@@ -3,6 +3,8 @@
 ProcessoProd::ProcessoProd(int id) : Processo(id)
 {
     this->id = id;
+    this->status = "espera";
+    this->nome = "produtor";
     setTemp();
 
     cout << "Processo produtor criado ";
@@ -27,6 +29,11 @@ void ProcessoProd::setTemp()
 
 }
 
+void ProcessoProd::setStatus(const string status)
+{
+    this->status = status;
+}
+
 bool ProcessoProd::getWake()
 {
     return is_wake;
@@ -41,6 +48,16 @@ int ProcessoProd::getTemp()
 int ProcessoProd::getID()
 {
     return this->id;
+}
+
+string ProcessoProd::getNome()
+{
+    return this->nome;
+}
+
+string ProcessoProd::getStatus()
+{
+    return status;
 }
 
 int ProcessoProd::produz()
