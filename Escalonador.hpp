@@ -1,6 +1,6 @@
 #include "includes.hpp"
 #include "Processo.hpp"
-#include "kernel.hpp"
+#include "Kernel.hpp"
 
 class Escalonador{
     private:
