@@ -11,6 +11,8 @@ class Escalonador{
     Escalonador(Kernel* k);
     void adicionaProcesso();
     void iniciaProcesso();
+    void iniciaProcessoId(int id);
     void terminaProcesso();
+    void terminaProcessoId(int id);
     void listaProcesso();
 };

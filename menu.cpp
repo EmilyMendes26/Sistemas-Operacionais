@@ -32,12 +32,14 @@ int main(){
             do {
                 cout << "Digite 0 para sair" << endl;
                 cout << "Digite 1 para criar processos" << endl;
-                cout << "Digite 2 para iniciar processo" << endl;
-                cout << "Digite 3 para encerrar processo" << endl;
-                cout << "Digite 4 para visualizar os processos" << endl;
-                cout << "Digite 5 para visualizar a fila do escalonador" << endl;
-                cout << "Digite 6 para visualizar escalonamento wake and sleep" << endl;
-                cout << "Digite 7 para gerar 5 processos" << endl;
+                cout << "Digite 2 para iniciar todos os processo" << endl;
+                cout << "Digite 3 para encerrar todos os processo" << endl;
+                cout << "Digite 4 para iniciar processo por ID" << endl;
+                cout << "Digite 5 para encerrar processo por ID" << endl;
+                cout << "Digite 6 para visualizar os processos" << endl;
+                cout << "Digite 7 para visualizar a fila do escalonador" << endl;
+                cout << "Digite 8 para visualizar escalonamento wake and sleep" << endl;
+                cout << "Digite 9 para gerar 5 processos" << endl;
 
                 cin >> opc2;
                 system("cls");
@@ -69,22 +71,37 @@ int main(){
                 }
 
                 if (opc2 == 4){
+                    int id;
+                    cout << "Qual o id do processo a ser iniciado: " << endl;
+                    cin >> id;
+                    escalona.iniciaProcessoId(id);
+                    sleepClear();
+                }
+                if (opc2 == 5){
+                    int id;
+                    cout << "Qual o id do processo a ser finalizado: " << endl;
+                    cin >> id;
+                    escalona.terminaProcessoId(id);
+                    sleepClear();
+                }
+
+                if (opc2 == 6){
                     sistema.listarProcessos();
                     sleepClear();
                 }
 
-                if (opc2 == 5){
+                if (opc2 == 7){
                     escalona.listaProcesso();
                     sleepClear();
                 }
 
-                if (opc2 == 7){
+                if (opc2 == 9){
                     sistema.criaProcesso(3,2);
                     escalona.adicionaProcesso();
                     sleepClear();
                 }
 
-                if (opc2 == 6){
+                if (opc2 == 8){
                     #define Fila_buffer 15
 
                     int buffer = 0;

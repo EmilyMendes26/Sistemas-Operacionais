@@ -10,12 +10,13 @@ void Kernel::adicionaProcesso(class Processo* processo){
 
 void Kernel::criaProcesso(int qp, int qc)
 {
-    for (int i = 0; i < qp; i++){
+    int tamanhoTabela = this->getTamanhoTabela();
+    for (int i = tamanhoTabela; i < (tamanhoTabela + qp); i++){
 
         Processo* p = new ProcessoProd(i);
         adicionaProcesso(p);
     }
-    for (int i = qp; i < (qp + qc); i++){
+    for (int i = (tamanhoTabela + qp); i < (tamanhoTabela + qp + qc); i++){
         Processo* c = new ProcessoCons(i);
         adicionaProcesso(c);
     }

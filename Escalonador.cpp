@@ -34,10 +34,36 @@ void Escalonador::iniciaProcesso()
     }
 }
 
+void Escalonador::iniciaProcessoId(int id)
+{
+    for (Processo* aux : fila) {
+        if (aux->getID() == id){
+            aux->setStatus("iniciado");
+
+            cout << "Processo ID: " << aux->getID() << " Iniciado" << endl;
+            fila.clear();
+            adicionaProcesso();
+        }
+    }
+}
+
 void Escalonador::terminaProcesso()
 {    
     for (Processo* aux : fila) {
     if (aux->getStatus() == "iniciado"){
+        aux->setStatus("espera");
+
+        cout << "Processo ID: " << aux->getID() << " terminado" << endl;
+        fila.clear();
+        adicionaProcesso();
+    }
+}
+}
+
+void Escalonador::terminaProcessoId(int id)
+{    
+    for (Processo* aux : fila) {
+    if (aux->getID() == id){
         aux->setStatus("espera");
 
         cout << "Processo ID: " << aux->getID() << " terminado" << endl;
