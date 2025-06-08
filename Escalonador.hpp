@@ -15,4 +15,6 @@ class Escalonador{
     void terminaProcesso();
     void terminaProcessoId(int id);
     void listaProcesso();
+    void wake_sleep();
+    void deadlock();
 };

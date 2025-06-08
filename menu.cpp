@@ -40,6 +40,7 @@ int main(){
                 cout << "Digite 7 para visualizar a fila do escalonador" << endl;
                 cout << "Digite 8 para visualizar escalonamento wake and sleep" << endl;
                 cout << "Digite 9 para gerar 5 processos" << endl;
+                cout << "Digite 10 para simular o deadlock" << endl;
 
                 cin >> opc2;
                 system("cls");
@@ -102,56 +103,14 @@ int main(){
                 }
 
                 if (opc2 == 8){
-                    #define Fila_buffer 15
-
-                    int buffer = 0;
-                    int produto;
-
-                    ProcessoProd p(0);
-                    ProcessoCons c(1);
-
-                    while(true){
-                        if (buffer == Fila_buffer){
-                            p.setWake(false);
-                        } else {
-                            p.setWake(true);
-                        }
-
-                        if (buffer >= 1){
-                            c.setWake(true);
-                        } else {
-                            c.setWake(false);
-                        }
-
-                        if (buffer == 0){
-                            c.setWake(false);
-                        }
-
-                        if (buffer == (Fila_buffer - 1)){
-                            c.setWake(true);
-                        }
-
-                        if (p.getWake()){
-                            cout << "Produtor acordado" << endl;
-                            produto = p.produz();
-                            c.recebe_mensagem(p.manda_mensagem());
-                            cout << "buffer: " << ++buffer << endl;
-                            sleep(5);
-                        } else {
-                            cout << "Produtor dormindo" << endl;
-                        }
-
-                        if (c.getWake()){
-                            cout << "Consumidor acordado" << endl;
-                            c.consome(produto);
-                            p.recebe_mensagem(c.manda_mensagem());
-                            cout << "buffer: " << --buffer << endl;
-                            sleep(5);  // Coloca o consumidor para dormir
-                        } else {
-                            cout << "Consumidor dormindo" << endl;
-                        }
-                    }
+                    escalona.wake_sleep();
+                    sleepClear();
                 }
+
+                if (opc2 == 10){
+
+                }
+            
 
             } while (opc2 != 0);
         }
