@@ -2,6 +2,7 @@
 #include "Escalonador.cpp"
 #include "ProcessoCons.cpp"
 #include "ProcessoProd.cpp"
+#include "Memoria.cpp"
 
 
 void sleepClear(){
@@ -23,8 +24,9 @@ int main(){
             sair = true;
         }
         if (opc == 1){
-            Kernel sistema;
-            Escalonador escalona(&sistema);
+            Memoria m;
+            Kernel sistema(&m);
+            Escalonador escalona(&sistema, &m);
             int opc2;
             sleepClear();
             
@@ -108,7 +110,8 @@ int main(){
                 }
 
                 if (opc2 == 10){
-
+                    escalona.deadlock();
+                    sleepClear();
                 }
             
 

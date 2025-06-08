@@ -1,16 +1,18 @@
 #include"Kernel.hpp"
+#include "Memoria.hpp"
 
-Kernel::Kernel(){
+Kernel::Kernel(Memoria *m){
+    this->memoria = m;
     cout << "Sistema Operacional iniciado!" << endl;
 }
 
 void Kernel::adicionaProcesso(class Processo* processo){
-    tabelaDeProcessos.push_back(processo);
+    memoria->getTabelaProcesso().push_back(processo);
 }
 
 void Kernel::criaProcesso(int qp, int qc)
 {
-    int tamanhoTabela = this->getTamanhoTabela();
+    int tamanhoTabela = memoria->getTamanhoTabela();
     for (int i = tamanhoTabela; i < (tamanhoTabela + qp); i++){
 
         Processo* p = new ProcessoProd(i);
@@ -23,7 +25,7 @@ void Kernel::criaProcesso(int qp, int qc)
 }
 
 Processo* Kernel::getProcesso(int id) {
-    for (Processo* p : tabelaDeProcessos) {
+    for (Processo* p : memoria->getTabelaProcesso()) {
         if (p->getID() == id) {
             return p;
         }
@@ -31,15 +33,11 @@ Processo* Kernel::getProcesso(int id) {
     return nullptr;
 }
 
-int Kernel::getTamanhoTabela()
-{
-    return this->tabelaDeProcessos.size();
-}
 
 void Kernel::listarProcessos(){
     int pos = 0;
 
-    for (Processo* aux : this->tabelaDeProcessos){
+    for (Processo* aux : memoria->getTabelaProcesso()){
         cout << "Processo de ID:" << aux->getID() << " Tempo: " << aux->getTemp() << " Estado: "<< aux->getStatus() << endl;
 		pos++;
     }

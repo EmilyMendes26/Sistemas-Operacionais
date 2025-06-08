@@ -4,19 +4,19 @@
 #include"Processo.hpp"
 #include"ProcessoProd.hpp"
 #include"ProcessoCons.hpp"
+#include "Memoria.hpp"
 
 class Kernel{
-    protected:
-        vector<Processo*> tabelaDeProcessos;
+    private:
+        Memoria* memoria;
 
     public:
-        Kernel();
+        Kernel(Memoria* m);
 
         void adicionaProcesso(Processo* processo);
         void listarProcessos();
         void criaProcesso(int qp, int qc);
         Processo* getProcesso(int id);
-        int getTamanhoTabela();
 };
 
 #endif

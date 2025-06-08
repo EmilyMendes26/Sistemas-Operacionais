@@ -1,15 +1,17 @@
 #include "includes.hpp"
 #include "Escalonador.hpp"
+#include "Memoria.hpp"
 
-Escalonador::Escalonador(Kernel* k)
+Escalonador::Escalonador(Kernel* k, Memoria* m)
 {
     this->kernel = k;
+    this->memoria = m;
     cout << "Escalonador criado" << endl;
 }
 
 void Escalonador::adicionaProcesso()
 {
-    int limite = kernel->getTamanhoTabela();
+    int limite = memoria->getTamanhoTabela();
 
     for (int i = 0; i <= limite; i++){
         Processo* processo = kernel->getProcesso(i);
@@ -133,17 +135,34 @@ void Escalonador::deadlock()
     ProcessoProd p(0);
     ProcessoCons c(1);
 
-    bool recurso1_livre = true;
-    bool recurso2_livre = true;
-    
-    if (p.getWake() && recurso1_livre){
-        recurso1_livre = false;
-        cout << "Recurso 1 esta bloqueado" << endl;
+    if (p.getWake() && memoria->getRecurso_1()){
+        memoria->setRecurso_1(false);
+        cout << "Recurso 1 da memoria alocado para o produtor" << endl;
     }else{
-        cout << "Esperando recurso 1" << endl;
+        cout << "Processo produtor aguardando recurso 1" << endl;
     }
 
-    if (p.getWake() && recurso2_livre){
-        
+    if (c.getWake() && memoria->getRecurso_2()){
+        memoria->setRecurso_2(false);
+        cout << "Recurso 2 da memoria alocado para o consumidor" << endl;
+    }else{
+        cout << "Processo consumidor aguardando recurso 2" << endl;
     }
+
+    if (p.getWake() && memoria->getRecurso_2()){
+        memoria->setRecurso_2(false);
+        cout << "Recurso 2 da memoria alocado para o produtor" << endl;
+    }else{
+        cout << "Processo produtor aguardando recurso 2" << endl;
+    }
+
+    if (c.getWake() && memoria->getRecurso_1()){
+        memoria->setRecurso_1(false);
+        cout << "Recurso 1 da memoria alocado para o consumidor" << endl;
+    }else{
+        cout << "Processo consumidor aguardando recurso 1" << endl;
+    }
+
+    sleep(3);
+
 }
