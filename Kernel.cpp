@@ -1,5 +1,4 @@
 #include"Kernel.hpp"
-#include "Memoria.hpp"
 
 Kernel::Kernel(Memoria *m){
     this->memoria = m;
@@ -32,7 +31,6 @@ Processo* Kernel::getProcesso(int id) {
     }
     return nullptr;
 }
-
 
 void Kernel::listarProcessos(){
     int pos = 0;

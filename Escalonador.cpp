@@ -1,11 +1,10 @@
-#include "includes.hpp"
 #include "Escalonador.hpp"
-#include "Memoria.hpp"
 
-Escalonador::Escalonador(Kernel* k, Memoria* m)
+Escalonador::Escalonador(Kernel* k, Memoria* m, Processador* p)
 {
     this->kernel = k;
     this->memoria = m;
+    this->processador = p;
     cout << "Escalonador criado" << endl;
 }
 
@@ -134,35 +133,49 @@ void Escalonador::deadlock()
 {
     ProcessoProd p(0);
     ProcessoCons c(1);
+    p.setWake(true);
+    c.setWake(true);
 
-    if (p.getWake() && memoria->getRecurso_1()){
-        memoria->setRecurso_1(false);
-        cout << "Recurso 1 da memoria alocado para o produtor" << endl;
-    }else{
-        cout << "Processo produtor aguardando recurso 1" << endl;
+    if (p.getWake()){
+        if(processador->getNucleo1()){
+            processador->setNucleo1(false);
+            cout << "Nucleo 1 alocado para o produtor" << endl;
+        }
+        else if (!processador->getNucleo1()){
+            cout << "Processo produtor esperando nucleo 1" << endl;
+        }
     }
 
-    if (c.getWake() && memoria->getRecurso_2()){
-        memoria->setRecurso_2(false);
-        cout << "Recurso 2 da memoria alocado para o consumidor" << endl;
-    }else{
-        cout << "Processo consumidor aguardando recurso 2" << endl;
+    if (c.getWake()){
+        if(processador->getNucleo2()){
+            processador->setNucleo2(false);
+            cout << "Nucleo 2 alocado para o consumidor" << endl;
+        }
+        else if (!processador->getNucleo2()){
+            cout << "Processo consumidor esperando nucleo 1" << endl;
+        }
     }
 
-    if (p.getWake() && memoria->getRecurso_2()){
-        memoria->setRecurso_2(false);
-        cout << "Recurso 2 da memoria alocado para o produtor" << endl;
-    }else{
-        cout << "Processo produtor aguardando recurso 2" << endl;
+    if (p.getWake()){
+        if(processador->getNucleo2()){
+            processador->setNucleo2(false);
+            cout << "Nucleo 1 alocado para o produtor" << endl;
+        }
+        else if (!processador->getNucleo2()){
+            cout << "Processo produtor esperando nucleo 1" << endl;
+        }
     }
 
-    if (c.getWake() && memoria->getRecurso_1()){
-        memoria->setRecurso_1(false);
-        cout << "Recurso 1 da memoria alocado para o consumidor" << endl;
-    }else{
-        cout << "Processo consumidor aguardando recurso 1" << endl;
+    if (c.getWake()){
+        if(processador->getNucleo1()){
+            processador->setNucleo1(false);
+            cout << "Nucleo 1 alocado para o consumidor" << endl;
+        }
+        else if (!processador->getNucleo1()){
+            cout << "Processo consumidor esperando nucleo 2" << endl;
+        }
     }
 
-    sleep(3);
+    sleep(5);
 
 }

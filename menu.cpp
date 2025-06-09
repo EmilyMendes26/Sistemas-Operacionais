@@ -3,6 +3,8 @@
 #include "ProcessoCons.cpp"
 #include "ProcessoProd.cpp"
 #include "Memoria.cpp"
+#include "Processador.cpp"
+#include "Impressora.cpp"
 
 
 void sleepClear(){
@@ -24,9 +26,11 @@ int main(){
             sair = true;
         }
         if (opc == 1){
+            Impressora* i = new Impressora();
             Memoria m;
+            Processador i2;
             Kernel sistema(&m);
-            Escalonador escalona(&sistema, &m);
+            Escalonador escalona(&sistema, &m, &i2);
             int opc2;
             sleepClear();
             
@@ -43,6 +47,7 @@ int main(){
                 cout << "Digite 8 para visualizar escalonamento wake and sleep" << endl;
                 cout << "Digite 9 para gerar 5 processos" << endl;
                 cout << "Digite 10 para simular o deadlock" << endl;
+                cout << "Digite 11 para simular E/S" << endl;
 
                 cin >> opc2;
                 system("cls");
@@ -111,6 +116,11 @@ int main(){
 
                 if (opc2 == 10){
                     escalona.deadlock();
+                    sleepClear();
+                }
+
+                if (opc2 == 11){
+                    i->InterrompeProcessador(&i2);
                     sleepClear();
                 }
             

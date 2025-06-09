@@ -1,30 +1,18 @@
-#include "includes.hpp"
 #include "Memoria.hpp"
 
 Memoria::Memoria()
 {
-    this->recurso_1 = true;
-    this->recurso_2 = true;
+    this->livre = true;
 }
 
-void Memoria::setRecurso_1(bool r1)
+void Memoria::setEstado(bool e)
 {
-    this->recurso_1 = r1;
+    this->livre = e;
 }
 
-void Memoria::setRecurso_2(bool r2)
+bool Memoria::getEstado()
 {
-    this->recurso_2 = r2;
-}
-
-bool Memoria::getRecurso_2()
-{
-    return this->recurso_2;
-}
-
-bool Memoria::getRecurso_1()
-{
-    return this->recurso_1;
+    return this->livre;
 }
 
 int Memoria::getTamanhoTabela()

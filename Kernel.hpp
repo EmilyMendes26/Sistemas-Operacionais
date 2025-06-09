@@ -5,6 +5,7 @@
 #include"ProcessoProd.hpp"
 #include"ProcessoCons.hpp"
 #include "Memoria.hpp"
+#include "includes.hpp"
 
 class Kernel{
     private:
