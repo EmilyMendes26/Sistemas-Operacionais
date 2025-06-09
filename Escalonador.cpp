@@ -177,5 +177,7 @@ void Escalonador::deadlock()
     }
 
     sleep(5);
+    processador->setNucleo1(true);
+    processador->setNucleo2(true);
 
 }
