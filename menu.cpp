@@ -54,6 +54,7 @@ int main(){
 
                 if (opc2 == 0){
                     opc2 = 0;
+                    cout << "Desligando o sistema" << endl;
                     break;
                 }
                 if (opc2 == 1){

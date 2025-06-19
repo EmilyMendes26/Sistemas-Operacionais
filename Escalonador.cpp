@@ -152,17 +152,17 @@ void Escalonador::deadlock()
             cout << "Nucleo 2 alocado para o consumidor" << endl;
         }
         else if (!processador->getNucleo2()){
-            cout << "Processo consumidor esperando nucleo 1" << endl;
+            cout << "Processo consumidor esperando nucleo 2" << endl;
         }
     }
 
     if (p.getWake()){
         if(processador->getNucleo2()){
             processador->setNucleo2(false);
-            cout << "Nucleo 1 alocado para o produtor" << endl;
+            cout << "Nucleo 2 alocado para o produtor" << endl;
         }
         else if (!processador->getNucleo2()){
-            cout << "Processo produtor esperando nucleo 1" << endl;
+            cout << "Processo produtor esperando nucleo 2" << endl;
         }
     }
 
@@ -172,12 +172,13 @@ void Escalonador::deadlock()
             cout << "Nucleo 1 alocado para o consumidor" << endl;
         }
         else if (!processador->getNucleo1()){
-            cout << "Processo consumidor esperando nucleo 2" << endl;
+            cout << "Processo consumidor esperando nucleo 1" << endl;
         }
     }
 
-    sleep(5);
+    sleep(10);
     processador->setNucleo1(true);
     processador->setNucleo2(true);
 
+    cout << "Processos finalizados por deadlock!" << endl;
 }
